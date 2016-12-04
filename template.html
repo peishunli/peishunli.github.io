@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+{baidu_tonji}
+<head>
+  <title>{title} - riteme.site</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="{favicon}" type="image/png">
+  <link rel="stylesheet" type="text/css" href="{css}">
+  <script type="text/javascript" async src="{mathjax}?config=TeX-AMS_HTML"></script>
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <link href="{tipuesearch_css}" rel="stylesheet">
+  <script src="{tipuesearch_set}"></script>
+  <script src="{tipuesearch_min_js}"></script>
+</head>
+<body>
+<div id="topbar">
+  <div style="display: block; float: right">
+  <form action="{search_page}">
+  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
+  </form>
+  </div>
+</div>
+{breadcrumb}
+
+<div id="view">
+{toc}
+<div id="container">
+{content}
+<hr/>
+<a href="{printable}">查看打印版本</a><br/>
+标签: {tags}<br/>
+创建时间: {create}<br/>
+上次修改: {modified}
+<div class="ds-thread" data-thread-key="{page_key}" data-title="{page_title}" data-url="{page_url}"></div>
+{duoshuo_code}
+</div>
+</div>
+
+<footer class="page-footer">
+  <div id="container">
+    <div class="footer-left">
+        <h4 class="white-text">关于riteme.site</h5>
+        <ul class="mdul">
+          <li class="mdli white-text">一个从不乱说话的博客...</li>
+        </ul>
+    </div>
+    <div class="footer-right">
+        <h4 class="white-text">友情链接</h5>
+        <ul class="mdul">
+          <li class="mdli"><a class="white-text" href="http://link-arthur.github.io/"><del>LinkSBK</del></a></li>
+          <li class="mdli"><a class="white-text" href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+          <li class="mdli"><a class="white-text" href="http://haogram.hol.es/">核糖核酸</a></li>
+          <li class="mdli"><a class="white-text" href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+        </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div id="container">
+        Copyright © 2015-2016 riteme. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
+</html>

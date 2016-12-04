@@ -1,137 +1,94 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Data analysis</title>
-		<meta name="keywords" content="data analysis, bioinformatics, Linux">
-		<meta name="description" content="We share methods for data analysis">
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-		<link rel="stylesheet" type="text/css" href="css/pack.css">
-		<link rel="shortcut icon" href="favicon.ico">
-		<!--[if lt IE 9]>
-		<script type="text/javascript" src="js/html5shiv.js"></script>
-		<script type="text/javascript" src="js/respond.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<header>
-			<nav class="content">
-				<a href="index.html"><h1 class="gittext lowercase">Git<span>for Windows</span></h1></a>
-				<div class="version"><a href="https://github.com/git-for-windows/git/releases/tag/v2.10.1.windows.1" title="Version 2.10.1 was published on Tue, 04 Oct 2016 14:13:02 UTC">Version 2.10.1</a></div>
-				<ul class="list-unstyled">
-					<li><a style="font-weight:bold" href="https://github.com/git-for-windows/git/wiki/FAQ" target="_blank">FAQ</a></li>
-					<li><a href="https://github.com/git-for-windows/git" target="_blank">Repository</a></li>
-					<li><a href="http://groups.google.com/group/git-for-windows" target="_blank">Mailing List</a></li>
-				</ul>
-			</nav>
-			<section class="content feature">
-				<div class="imagerollover">
-					<img src="img/gwindows_logo.png" alt="Git Logo">
-					<img class="top" src="img/git_logo.png" alt="Git Logo">
-				</div>
-				<article>
-					<div class="vcentercontainer">
-						<div>
-							<h2>We bring the awesome <span class="gittext">Git</span> SCM to Windows</h2>
-							<a name="download" /><a class="button featurebutton" href="https://github.com/git-for-windows/git/releases/latest" target="_blank">Download</a>
-							<a class="button featurebutton" href="#contribute">Contribute</a>
-						</div>
-					</div>
-				</article>
-			</section>
-		</header>
-		<section class="details">
-			<article>
-				<h2>Tools &amp; Features</h2>
-				<div class="content">
-					<div class="vcentercontainer detailstext">
-						<div>
-							<p>Git for Windows focuses on offering a lightweight, native set of tools that bring the full feature set of the <a href="http://git-scm.com" target="_blank">Git SCM</a> to Windows while providing appropriate user interfaces for experienced Git users and novices alike.</p>
-							<h3><a name="bash" />Git BASH</h3>
-							<p>Git for Windows provides a BASH emulation used to run Git from the command line.  *NIX users should feel right at home, as the BASH emulation behaves just like the "git" command in LINUX and UNIX environments.</p>
-							<h3><a name="git-gui" />Git GUI</h3>
-							<p>As Windows users commonly expect graphical user interfaces, Git for Windows also provides the Git GUI, a powerful alternative to Git BASH, offering a graphical version of just about every Git command line function, as well as comprehensive visual diff tools.</p>
-							<h3><a name="explorer" />Shell Integration</h3>
-							<p>Simply right-click on a folder in Windows Explorer to access the BASH or GUI.</p>
-						</div>
-					</div>
-					<div class="vcentercontainer detailsimg">
-						<div class="verticalgallery">
-							<a class="fancybox-thumb" data-fancybox-group="gallery" href="img/gw1.png" title="Git BASH">
-								<img src="img/gw1web_thumb.png" alt="Git BASH">
-							</a>
-							<a class="fancybox-thumb" data-fancybox-group="gallery" href="img/gw2.png" title="Git GUI">
-								<img src="img/gw2web_thumb.png" alt="Git GUI">
-							</a>
-							<a class="fancybox-thumb" data-fancybox-group="gallery" href="img/gw3.png" title="Gitk: Exploring Commits">
-								<img src="img/gw3web_thumb.png" alt="Gitk: Exploring Commits">
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="stud"></div>
-				<h2 id="contribute">Contribute</h2>
-				<div class="content contributecontent">
-					<div class="vcentercontainer detailsimg">
-						<div>
-							<img src="img/details_features.png" alt="BASH Drawing">
-							<img src="img/details_contribute.png" alt="Git for Windows Logo">
-						</div>
-					</div>
-					<div class="vcentercontainer detailstext">
-						<div>
-							<p>As an open source project, Git for Windows benefits greatly from both the volunteer work of helpful developers and <a href="https://github.com/git-for-windows/git/wiki/Issue-reporting-guidelines">good bug reports</a> made by Git for Windows' users.</p>
-							<h3>Governance Model</h3>
-							<p>If you are interested in contribute to the <i>Git for Windows</i> project, have a look at the current <a href="governance-model.html">governance model</a>. There the roles of those involved to drive this project further down the road are described in detail.</p>
-							<h3><a name="issues"></a>Bug Reports &amp; Feature Requests</h3>
-							<p>If you've noticed a bug or simply have an idea that you'd like to see come real, why not work on it?  Bug reports and feature requests are typically submitted to the issue tracker on our GitHub repository.</p>
-							<a class="button" href="https://github.com/git-for-windows/git/issues" target="_blank">Issue Tracker</a>
-							<h3><span class="gittext">Git for Windows SDK</span> : Contributing Code</h3>
-							<p>The <i>Git for Windows SDK</i> is a build environment that includes all the tools necessary for developers who want to contribute by writing code for Git for Windows.</p>
-							<p>Please look at the <a href="https://github.com/git-for-windows/git/wiki/Technical-overview">technical overview</a> about the Git for Windows packaging and how to include your changes in your own custom installer.</p>
-							<a name="download-sdk" /><a class="button" href="https://github.com/git-for-windows/build-extra/releases/latest" target="_blank">Download <span class="gittext">Git for Windows SDK</span></a>
-							<p>To contribute/update this web page, see its <a href=" https://github.com/git-for-windows/git-for-windows.github.io">Repository</a>.</p>
-						</div>
-					</div>
-				</div>
-				<div class="stud"></div>
-<a href="https://plus.google.com/112458406006526838951" rel="publisher">Google+</a>
-			</article>
-		</section>
-		<footer>
-			<div class="content">
-				<ul class="list-unstyled">
-					<li><a style="font-weight:bold" href="https://github.com/git-for-windows/git/wiki/FAQ" target="_blank">FAQ</a></li>
-					<li><a href="https://github.com/git-for-windows/git" target="_blank">Repository</a></li>
-					<li><a href="http://groups.google.com/group/git-for-windows" target="_blank">Mailing List</a></li>
-					<li><a href="https://github.com/git-for-windows/git/releases/">All Releases</a></li>
-				</ul>
-				<a href="index.html"><h1 class="gittext lowercase">Git for Windows</h1></a>
-				<div class="stud"></div>
-			</div>
-		</footer>
-		<script src="js/pack.js"></script>
-		<script>
-			$(document).ready(function() {
-				$(".fancybox-thumb").fancybox({
-					padding: 0
-				});
+<html>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?72d0c4a099cd676176e657b871326707";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<head>
+  <title>Home Page - riteme.site</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="css/site.min.css">
+  <script type="text/javascript" async src="mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <link href="tipuesearch/tipuesearch.css" rel="stylesheet">
+  <script src="tipuesearch/tipuesearch_set.js"></script>
+  <script src="tipuesearch/tipuesearch.min.js"></script>
+</head>
+<body>
+<div id="topbar">
+  <div style="display: block; float: right">
+  <form action="search.html">
+  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
+  </form>
+  </div>
+</div>
+<ul class="breadcrumb"><li><a href="index.html">HOME</a></li><li class="active">HOME PAGE</li></ul>
 
-				/* Replace the download link if a Windows browser was detected */
-				try {
-					var agent = window.navigator.userAgent;
-					var href = $('.version > a')[0].href.match(/^(.*\/)tag(\/.*)$/);
-					var version = $('.version > a')[0].title.match(/^Version ([0-9.]*)(\(([0-9]*)?\))?/);
-					if (!agent.match(/Windows/) || !href || !version)
-						throw 0;
-					var bitness = agent.match(/(WOW|Win)64/) ? '64' : '32';
-					if (version[2])
-						version[1] += '.' + version[3];
-					var url = href[1] + 'download' + href[2] + '/Git-' + version[1] + '-' + bitness + '-bit.exe';
-					$('a.button:contains("Download")')[0].href = url;
-				} catch(e) {}
-			});
-		</script>
-	</body>
+<div id="view">
+
+<div id="container">
+<h3 id="ritemes-site">欢迎来到riteme&rsquo;s site！</h3>
+<p>这是riteme的个人主页。<br />
+这个博客已经开始成天乱说话了，大家不要乱D QAQ。<br />
+博客更新比较缓慢，可能会长期不更......<br />
+博客里大多关于编程与OI，大家随意翻阅~~</p>
+<p>我的GitHub: <a href="https://github.com/riteme">https://github.com/riteme</a><br />
+我的知乎: <a href="https://www.zhihu.com/people/riteme">https://www.zhihu.com/people/riteme</a></p>
+<p>PS: 多说评论居然是在线更新的！<br />
+<a href="./blog/chat.html">&ndash;&gt;辣鸡聊天室&lt;&ndash;</a></p>
+<h3 id="_1">最近文章</h3>
+<p><div class="card"><div class="card-content"><span class="card-title">差分序列与Stirling数</span><p>介绍了差分序列和两类Stirling数</p></div><div class="card-action"><a href="./blog/2016-11-29/delta-and-stirling.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">位运算卷积与FWT</span><p>介绍了位运算卷积以及快速计算的FWT算法</p></div><div class="card-action"><a href="./blog/2016-11-25/fwt.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">辛普森积分法</span><p>简单介绍了辛普森积分法和自适应辛普森积分法</p></div><div class="card-action"><a href="./blog/2016-11-16/simpson.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">RSRL开发记录（一）</span><p></p></div><div class="card-action"><a href="./blog/2016-11-6/rsrl-1.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">收到一封奇怪的邮件</span><p></p></div><div class="card-action"><a href="./blog/2016-10-30/strange-email.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">Hall定理</span><p>一个用于判定二分图是否具有最大匹配的定理</p></div><div class="card-action"><a href="./blog/2016-9-19/hall-theorem.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">HNSDFZ2016 #5</span><p>HNSDFZ2016第五次欢乐互测</p></div><div class="card-action"><a href="./blog/2016-8-28/hnsdfz-5.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">快速数论变换 (NTT)</span><p>快速傅立叶变换的双胞胎，用原根代替单位复数根</p></div><div class="card-action"><a href="./blog/2016-8-22/ntt.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">二进制GCD</span><p>在算导上发现了一个有趣的算法，有氧环境下可以拿来卡卡常.....</p></div><div class="card-action"><a href="./blog/2016-8-19/binary-gcd.html">READ MORE&hellip;</a></div></div><div class="card"><div class="card-content"><span class="card-title">莫比乌斯反演</span><p>介绍了莫比乌斯函数和莫比乌斯反演公式</p></div><div class="card-action"><a href="./blog/2016-8-18/mobius.html">READ MORE&hellip;</a></div></div><a href="./posts.html" class="waves-effect waves-light btn" style="width: 100%"><strong>查看全部&hellip;</strong></a></p>
+<hr/>
+<a href="index-printable.html">查看打印版本</a><br/>
+标签: <span class="label label-default">Home</span><br/>
+创建时间: 2016.01.31<br/>
+上次修改: 2016.04.14
+<div class="ds-thread" data-thread-key="cfe6e34a4c7f24aad32aa4299562f5b1" data-title="Home Page" data-url="http://riteme.github.io/index.html"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"riteme"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+</div>
+
+<footer class="page-footer">
+  <div id="container">
+    <div class="footer-left">
+        <h4 class="white-text">关于riteme.site</h5>
+        <ul class="mdul">
+          <li class="mdli white-text">一个从不乱说话的博客...</li>
+        </ul>
+    </div>
+    <div class="footer-right">
+        <h4 class="white-text">友情链接</h5>
+        <ul class="mdul">
+          <li class="mdli"><a class="white-text" href="http://link-arthur.github.io/"><del>LinkSBK</del></a></li>
+          <li class="mdli"><a class="white-text" href="http://ruanxingzhi.github.io/">ruanxingzhi</a></li>
+          <li class="mdli"><a class="white-text" href="http://haogram.hol.es/">核糖核酸</a></li>
+          <li class="mdli"><a class="white-text" href="http://hjwjbsr.is-programmer.com/">HJWJBSR</a></li>
+        </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div id="container">
+        Copyright © 2015-2016 riteme. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
 </html>
