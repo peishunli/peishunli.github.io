@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a4d4cfbf5559c427ea39c9814a033024";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<head>
+  <title>模块 - peishunli.site</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="..\..\favicon.ico" type="image/ico">
+  <link rel="stylesheet" type="text/css" href="..\..\css\site.min.css">
+  <script type="text/javascript" async="async" src="..\..\mathjax\MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <link href="..\..\tipuesearch\tipuesearch.css" rel="stylesheet">
+  <script src="..\..\tipuesearch\tipuesearch_set.js"></script>
+  <script src="..\..\tipuesearch\tipuesearch.min.js"></script>
+</head>
+<body>
+<div id="topbar">
+  <div style="display: block; float: right">
+  <form action="..\..\search.html">
+  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
+  </form>
+  </div>
+</div>
+<ul class="breadcrumb"><li><a href="..\..\index.html">HOME</a></li><li><a href="..\posts.html">POSTS</a></li><li><a href="..\posts.html#PYTHON_BEGINNING">PYTHON_BEGINNING</a></li><li class="active">模块</li></ul>
+
+<div id="view">
+<div class="toc">
+<ul>
+<li><a href="#1">1 模块</a><ul>
+<li><a href="#11">1.1 模块就是程序</a></li>
+<li><a href="#12">1.2 模块用于定义</a></li>
+<li><a href="#13">1.3 包</a></li>
+</ul>
+</li>
+<li><a href="#2">2 探究模块</a><ul>
+<li><a href="#21-dir">2.1 使用dir</a></li>
+<li><a href="#22-help">2.2 用help获取帮助</a></li>
+<li><a href="#23">2.3 阅读源代码</a></li>
+</ul>
+</li>
+<li><a href="#3">3 标准库</a><ul>
+<li><a href="#31-sys">3.1 sys</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="container">
+
+<p>Python的标准安装包括一组模块（module），称为标准库（standard library）。本章将介绍标准库中模块的功能。</p>
+<h3 id="1">1 模块</h3>
+<p>现在你已经知道如何创建和执行自己的程序（或脚本）了，也学会了怎么用import从外部模块获取函数并且为自己的程序所用：      </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>0.0
+</pre></div>
+</td></tr></table>
+
+<p>怎么编写自己的模块呢？</p>
+<h4 id="11">1.1 模块就是程序</h4>
+<p>任何Python程序都可以作为模块导入。假如你写了一个如下的程序，并且将它保存为hello.py文件。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c">#一个简单的模块</span>
+<span class="c">#hello.py     </span>
+<span class="k">print</span> <span class="s">&quot;Hello, world!&quot;</span>
+</pre></div>
+</td></tr></table>
+
+<p>程序保存的位置很重要，假如保存在c:/python。可以执行下面的代码，告诉解释器在哪里寻找模块了（以Windows目录为例）：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;c:/python&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>通过上步告诉解释器：除了从默认的目录中寻找之外，还需要从目录c:/python中寻找模块。完成之后，就能导入自己的模块了：</p>
+<p>>&gt;&gt; import hello   <br />
+Hello, world! </p>
+<p>如你所见，在导入模块的时候，其中的代码被执行了。不过，如果再次导入该模块，就什么都不会发生了:    <br />
+>&gt;&gt; import hello   <br />
+>&gt;&gt;</p>
+<p>为什么这次没用了？因为导入模块并不意味着在导入时执行某些操作（比如打印文本）。它们主要用于定义，比如变量、函数和类等。此外，因为只需要定义这些东西一次，导入模块多次和导入一次的效果是一样的。</p>
+<h4 id="12">1.2 模块用于定义</h4>
+<p>模块（像类一样）可以保持自己的作用域。这就意味着模块中定义的所有类和函数以及赋值后变量都成为了模块的特性。 <br />
+<strong>1.2.1 在模块中定义函数</strong>    </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c">#包含函数的简单模块</span>
+<span class="c">#hello2.py     </span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>      
+    <span class="k">print</span> <span class="s">&quot;Hello, world!&quot;</span>       
+</pre></div>
+</td></tr></table>
+
+<p>可以像下面这样导入：   <br />
+>&gt;&gt;import hello2   <br />
+模块会被执行，这意味着hello函数在模块的作用域内被定义了。因此可以通过以下方式来访问函数： <br />
+>&gt;&gt;hello2.hello()  <br />
+Hello, world!</p>
+<p>为什么要这样做呢？为什么不在主程序中定义好一切呢？主要原因是<strong>代码重用</strong>（code reuse）。如果把代码放在模块中，就可以在多个程序中使用这些代码了。因此请记住：为了让代码可重用，请将它模块化！</p>
+<p><strong>1.2.2 在模块中添加测试代码</strong> <br />
+模块用来定义函数、类和其他一些内容，但是有些时候，在模块中添加一些检查模块本身是否正常工作的测试代码是很有用的。如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c">#带有问题测试代码的简单模块</span>
+<span class="c">#hello3.py     </span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>      
+    <span class="k">print</span> <span class="s">&quot;Hello, world!&quot;</span>
+<span class="c">#A test:</span>
+<span class="n">hello</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<p>>&gt;&gt;import hello3  <br />
+Hello, world!  <br />
+>&gt;&gt;hello3.hello()   <br />
+Hello, world!</p>
+<p>如果将hello3作为模块导入，测试代码就会被执行。为了避免这种情况关键在于：“告知”模块本身是作为程序运行还是导入到其他程序。为了实现这一点，需要使用__name__变量：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">__name__</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;__main__&#39;
+</pre></div>
+</td></tr></table>
+
+<p>hello3.__name__ <br />
+&lsquo;hello3&rsquo;</p>
+<p>如上，在“主程序”中，变量__name__的值是‘__main__’。而在导入的模块中，这个值就被设定为模块的名字。因此，为了让模块的测试代码更加好用，可以将其放置在if语句中：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c">#使用条件测试代码的模块</span>
+<span class="c">#hello4.py     </span>
+<span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>      
+    <span class="k">print</span> <span class="s">&quot;Hello, world!&quot;</span>
+<span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+    <span class="n">hello</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">test</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<h4 id="13">1.3 包</h4>
+<p>为了组织好模块，可以将它们分组为包（package）。当模块存储在文件中时（扩展名.py），包就是模块所在的目录。为了让Python将其作为包对待，它必须包含一个命名为__init__.py的文件(模块)。如果将它作为普通模块导入的话，文件的内容就是包的内容。比如有个名为constants的包，文件constants/__init__.py包括语句PI=3.14，那么你可以像下面这么做：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kn">import</span> <span class="nn">constants</span>
+<span class="k">print</span> <span class="n">constants</span><span class="o">.</span><span class="n">PI</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="2">2 探究模块</h3>
+<p>探索模块最直接的方式就是在Python解释器中研究它们。当然，要做的第一件事就是导入它。比如：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kn">import</span> <span class="nn">copy</span>
+</pre></div>
+</td></tr></table>
+
+<p>没有引发异常—所以它是存在的。但是它能做什么？又有什么？</p>
+<h4 id="21-dir">2.1 使用dir</h4>
+<p>查看模块包含的内容可以使用dir函数，它会将对象（模块的所有函数、类、变量等）的所有特性列出。一些特性以下划线开始—暗示（约定俗成）它们并不是为在模块外部使用而准备的。所以让我们用列表推导式过滤掉它们：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">copy</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;Error&#39;,
+ &#39;PyStringMap&#39;,
+ &#39;copy&#39;,
+ &#39;deepcopy&#39;,
+ &#39;dispatch_table&#39;,
+ &#39;error&#39;,
+ &#39;name&#39;,
+ &#39;t&#39;,
+ &#39;weakref&#39;]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">copy</span><span class="o">.</span><span class="n">__name__</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;copy&#39;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">copy</span><span class="o">.</span><span class="n">__all__</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;Error&#39;, &#39;copy&#39;, &#39;deepcopy&#39;]
+</pre></div>
+</td></tr></table>
+
+<p>__all__是在copy模块内部被设置的，如下：  <br />
+__all__=[&lsquo;Error&rsquo;, &lsquo;copy&rsquo;, &lsquo;deepcopy&rsquo;]   <br />
+那么它为什么在那呢？它定义了模块的<strong>公有接口</strong>（public interface）。更准确地说，它告诉解释器：从模块导入所有名字代表什么含义。如果你使用如下代码：  <br />
+from copy import *   <br />
+那么，你只能使用__all__变量中的3个函数。要导入PyStringMap函数的话，你就得显式地实现，比如from copy import PyStringMap。 <br />
+在编写模块的时候，像设置__all__这样的技术是相对有用的。因为模块中可能会有一大堆其他程序不需要或不想要的变量、函数和类，__all__会“客气地”将它们过滤掉。如果没有设定__all__，用import *语句默认将会输出模块中所有不以下划线开头的全局名称。</p>
+<h4 id="22-help">2.2 用help获取帮助</h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">help</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nx">Help</span> <span class="nx">on</span> <span class="kd">function</span> <span class="nx">copy</span> <span class="k">in</span> <span class="nx">module</span> <span class="nx">copy</span><span class="o">:</span>
+
+<span class="nx">copy</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="nx">Shallow</span> <span class="nx">copy</span> <span class="nx">operation</span> <span class="nx">on</span> <span class="nx">arbitrary</span> <span class="nx">Python</span> <span class="nx">objects</span><span class="p">.</span>
+
+    <span class="nx">See</span> <span class="nx">the</span> <span class="nx">module</span><span class="err">&#39;</span><span class="nx">s</span> <span class="nx">__doc__</span> <span class="nx">string</span> <span class="k">for</span> <span class="nx">more</span> <span class="nx">info</span><span class="p">.</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="o">.</span><span class="n">__doc__</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&quot;Shallow copy operation on arbitrary Python objects.\n\n    See the module&#39;s __doc__ string for more info.\n    &quot;
+</pre></div>
+</td></tr></table>
+
+<p>文档字符串是写在函数开头并且简述函数功能的字符串。这个字符串可以通过函数的__doc__属性引用。模块和类都有文档字符串（写在开头）。   <br />
+使用help与直接检查文档字符串相比，它的好处在于会获得更多信息，比如函数签名（也就是所带的参数）。</p>
+<h4 id="23">2.3 阅读源代码</h4>
+<p>要了解模块，是不能脱离源代码的。阅读源代码，是学习Python最好的方式。那么源代码在哪里？如果希望阅读标准模块copy的源代码，可以通过检查模块的__file__属性：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">copy</span><span class="o">.</span><span class="n">__file__</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;c:\\python27\\lib\\copy.pyc&#39;
+</pre></div>
+</td></tr></table>
+
+<p>注意，一些模块并不包含任何可以阅读的Python源代码。它们可能已经融入到解释器内了（比如sys模块），或者可能是使用C语言写成的。</p>
+<h3 id="3">3 标准库</h3>
+<p>安装Python后，你就免费获得了很多有用的模块。</p>
+<h4 id="31-sys">3.1 sys</h4>
+<p>sys模块让你能够访问与Python解释器联系紧密的变量和函数</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>
+</pre></div>
+</td></tr></table>
+<hr/>
+标签: <span class="label label-default">python</span> <span class="label label-default">标准库</span> <span class="label label-default">sys</span> <span class="label label-default">os</span> <span class="label label-default">6</span><br/>
+创建时间: 2016.12.07<br/>
+上次修改: 2016.12.07
+<div class="ds-thread" data-thread-key="fac54c3430528339ac075d688db27ce8" data-title="模块" data-url="http://peishunli.github.io/blog/python_beginning/6module.html"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"peishunli"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+</div>
+
+<footer class="page-footer">
+  <div id="container">
+    <div class="footer-left">
+        <h4 class="white-text">关于peishunli.site</h4>
+        <ul class="mdul">
+          <li class="mdli white-text">本网站提供的内容仅用于学习和分享，不能保证内容一定正确...</li>
+        </ul>
+    </div>
+    <div class="footer-right">
+        <h4 class="white-text">其他网站链接</h4>
+        <ul class="mdul">
+          <li class="mdli"><a class="white-text" href="http://github.com/">Github</a></li>
+		  <li class="mdli"><a class="white-text" href="http://www.zhihu.com/">知乎</a></li>
+        </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div id="container">
+        Copyright © 2015-2016 Powered by peishunli. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
+</html>

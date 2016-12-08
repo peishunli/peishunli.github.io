@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a4d4cfbf5559c427ea39c9814a033024";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<head>
+  <title>数据结构 - peishunli.site</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="..\..\favicon.ico" type="image/ico">
+  <link rel="stylesheet" type="text/css" href="..\..\css\site.min.css">
+  <script type="text/javascript" async="async" src="..\..\mathjax\MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <link href="..\..\tipuesearch\tipuesearch.css" rel="stylesheet">
+  <script src="..\..\tipuesearch\tipuesearch_set.js"></script>
+  <script src="..\..\tipuesearch\tipuesearch.min.js"></script>
+</head>
+<body>
+<div id="topbar">
+  <div style="display: block; float: right">
+  <form action="..\..\search.html">
+  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
+  </form>
+  </div>
+</div>
+<ul class="breadcrumb"><li><a href="..\..\index.html">HOME</a></li><li><a href="..\posts.html">POSTS</a></li><li><a href="..\posts.html#PYTHON_BEGINNING">PYTHON_BEGINNING</a></li><li class="active">数据结构</li></ul>
+
+<div id="view">
+<div class="toc">
+<ul>
+<li><a href="#1">1 通用序列操作</a><ul>
+<li><a href="#11">1.1 索引</a></li>
+<li><a href="#12">1.2 分片</a></li>
+<li><a href="#13">1.3 序列相加</a></li>
+<li><a href="#14">1.4 乘法</a></li>
+<li><a href="#15">1.5 成员资格</a></li>
+<li><a href="#16">1.6 长度、最小值和最大值</a></li>
+</ul>
+</li>
+<li><a href="#2">2 列表</a><ul>
+<li><a href="#21-list">2.1 list函数</a></li>
+<li><a href="#22">2.2 基本的列表操作</a></li>
+<li><a href="#23">2.3 列表方法</a></li>
+</ul>
+</li>
+<li><a href="#3">3 元组：不可变序列</a><ul>
+<li><a href="#31-tuple">3.1 tuple函数</a></li>
+<li><a href="#32">3.2 基本元组操作</a></li>
+</ul>
+</li>
+<li><a href="#4">4 字符串</a><ul>
+<li><a href="#41">4.1 字符串格式化</a></li>
+<li><a href="#42">4.2 字符串方法</a></li>
+</ul>
+</li>
+<li><a href="#5">5 字典</a><ul>
+<li><a href="#51">5.1 创建和使用字典</a></li>
+<li><a href="#52-dict">5.2 dict函数</a></li>
+<li><a href="#53">5.3 基本字典操作</a></li>
+<li><a href="#54">5.4 字典的格式化字符串</a></li>
+<li><a href="#55">5.5 字典方法</a></li>
+</ul>
+</li>
+<li><a href="#6">6 小结</a></li>
+</ul>
+</div>
+<div id="container">
+
+<p>数据结构是通过某种方式（例如对元素进行编号）组织在一起的数据元素的集合。在Python中，最基本的数据结构是序列(sequence)。序列中每个元素被分配一个序号-即元素的位置，也称为索引。第一个索引是0。Python中包含6种内建的序列，最常用的类型是：列表、元组和字符串。列表和元组/字符串的主要区别在于，列表可以修改，元组/字符串则不能。一般来说，在几乎所有的情况下列表都可以替代元组。</p>
+<h3 id="1">1 通用序列操作</h3>
+<p>所有序列类型都可以进行某些特定的操作，包括：索引（indexing）、分片（sliceing）、加（adding）、乘（multiplying）以及检查某个元素是否属于序列的成员。除此之外，Python还有计算序列长度、找出最大元素和最小元素的内建函数。</p>
+<h4 id="11">1.1 索引</h4>
+<p>序列中所有元素都有编号（索引）-从0开始递增。这些元素可以通过索引进行访问，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">greet</span><span class="o">=</span><span class="s">&#39;hello&#39;</span>
+<span class="n">greet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;h&#39;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">greet</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;o&#39;
+</pre></div>
+</td></tr></table>
+
+<p>使用负数索引时，Python会从右边，也就是从最后1个元素开始计数。最后1个元素的位置编号是-1。</p>
+<h4 id="12">1.2 分片</h4>
+<p>使用分片操作来访问一定范围内的元素。分片可通过冒号相隔两个索引来实现，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">greet</span><span class="o">=</span><span class="s">&#39;hello, world！&#39;</span>
+<span class="n">greet</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;ello, w&#39;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">nunbers</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">nunbers</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[4, 5, 6]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">nunbers</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[6, 7]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">nunbers</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[6, 7, 8]
+</pre></div>
+</td></tr></table>
+
+<p>分片操作的实现需要提供两个索引作为边界，第1个索引的元素是包含在分片内的，而第2个则不包含在分片内。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">nunbers</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 3, 5]
+</pre></div>
+</td></tr></table>
+
+<p>在这个例子中，分片包含了另外一个数字，这就是步长的显示设置。步长为2的分片包括的是从开始到结束每隔1个的元素。步长可以是负数，从右到左提取元素：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">nunbers</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[8, 6]
+</pre></div>
+</td></tr></table>
+
+<h4 id="13">1.3 序列相加</h4>
+<p>使用加号可以进行序列的连接操作：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, 3, 4, 5, 6]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;hello, &#39;</span><span class="o">+</span><span class="s">&#39;world!&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;hello, world!&#39;
+</pre></div>
+</td></tr></table>
+
+<h4 id="14">1.4 乘法</h4>
+<p>用数字x乘以一个序列会生成新的序列，而在新序列中，原来的序列被重复x次：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;python&#39;</span><span class="o">*</span><span class="mi">5</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;pythonpythonpythonpythonpython&#39;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">[</span><span class="mi">12</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[12, 12, 12]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">[</span><span class="bp">None</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[None, None, None, None, None, None, None, None, None, None]
+</pre></div>
+</td></tr></table>
+
+<p>有时候可能会需要一个值来代表空值，这个时候就需要使用None。None是一个Python的内建值，它确切含义是“这里什么也没有”。</p>
+<h4 id="15">1.5 成员资格</h4>
+<p>为了检测一个值是否在序列中，可以使用in运算符（布尔运算符）。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;a&#39;</span> <span class="ow">in</span> <span class="s">&#39;hello&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>False
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;e&#39;</span> <span class="ow">in</span> <span class="s">&#39;hello&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>True
+</pre></div>
+</td></tr></table>
+
+<h4 id="16">1.6 长度、最小值和最大值</h4>
+<p>内建函数len、min和max很有用。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">numbers</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>3
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">max</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>3
+</pre></div>
+</td></tr></table>
+
+<h3 id="2">2 列表</h3>
+<p>接下来讨论列表不同于元组和字符串的地方：列表是可变的-可以改变列表的内容，并且列表有很多有用的、专门的方法。</p>
+<h4 id="21-list">2.1 list函数</h4>
+<p>因为字符串不能像列表一样被修改，所以有时根据字符串创建列表会很有用。list函数可以实现这个操作。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">list</span><span class="p">(</span><span class="s">&#39;hello&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;]
+</pre></div>
+</td></tr></table>
+
+<p>可以用下面的表达式将一个由字符组成的列表转换为字符串：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="s">&#39;o&#39;</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;hello&#39;
+</pre></div>
+</td></tr></table>
+
+<h4 id="22">2.2 基本的列表操作</h4>
+<p>列表可以使用所有适用于序列的标准操作，如索引、分片和连接等。接下来会介绍一些可以改变列表的方法。</p>
+<p><strong>改变列表：元素赋值</strong>   <br />
+使用索引标记来为某个特定的、位置明确的元素赋值，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, 1]
+</pre></div>
+</td></tr></table>
+
+<p><strong>删除元素</strong>   <br />
+使用del语句来实现</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">del</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 1]
+</pre></div>
+</td></tr></table>
+
+<p><strong>分片赋值</strong></p>
+<p>分片是一个非常强大的特性，分片赋值操作则更加显示它的强大。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">name</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s">&#39;Perl&#39;</span><span class="p">)</span>
+<span class="n">name</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;P&#39;, &#39;e&#39;, &#39;r&#39;, &#39;l&#39;]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">name</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s">&#39;ar&#39;</span><span class="p">)</span>
+<span class="n">name</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;P&#39;, &#39;e&#39;, &#39;a&#39;, &#39;r&#39;]
+</pre></div>
+</td></tr></table>
+
+<h4 id="23">2.3 列表方法</h4>
+<p>方法是一个与某些对象有紧密联系的函数。对象可能是列表、数字，也可能是字符串或者其他类型的对象。方法可以这样进行调用：   <br />
+<strong>对象.方法（参数）</strong></p>
+<p>除了对象被放置到方法名之前，并且两者之间用一个点号隔开，方法调用与函数调用很类似。列表提供了几个方法，用于检查或者修改其中的内容。</p>
+<p><strong>1. append</strong>    <br />
+append方法用于在列表末尾追加新的对象：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">lst</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lst</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, 3, 2]
+</pre></div>
+</td></tr></table>
+
+<p><strong>2. count</strong>      <br />
+count方法统计某个元素在列表中出现的次数：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">lst</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>2
+</pre></div>
+</td></tr></table>
+
+<p><strong>3. extend</strong>      <br />
+extend方法可以在列表的末尾一次性追加另一个序列中的多个值。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, 3, 4, 5, 6]
+</pre></div>
+</td></tr></table>
+
+<p><strong>4. index</strong>      <br />
+index方法用于从列表中找出某个值第一个匹配项的索引位置：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">knights</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;we&#39;</span><span class="p">,</span><span class="s">&#39;are&#39;</span><span class="p">,</span><span class="s">&#39;the&#39;</span><span class="p">,</span><span class="s">&#39;knights&#39;</span><span class="p">]</span>
+<span class="n">knights</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;are&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>1
+</pre></div>
+</td></tr></table>
+
+<p><strong>5. insert</strong>      <br />
+insert方法用于将对象插入到列表中：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">a</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s">&#39;three&#39;</span><span class="p">)</span>
+<span class="n">a</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, &#39;three&#39;, 4]
+</pre></div>
+</td></tr></table>
+
+<p><strong>6. pop</strong>      <br />
+pop方法会移除列表中的一个元素（默认是最后一个），并且返回该元素的值 ：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>4
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">a</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, &#39;three&#39;]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">a</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>2
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">a</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, &#39;three&#39;]
+</pre></div>
+</td></tr></table>
+
+<p>使用pop方法可以实现一种常见的数据结构—栈。栈的原理就像堆放盘子那样，只能在顶部放一个盘子。同样，也只能从顶部拿走一个盘子。对于上述两个栈操作（放入和移除）-入栈（push）和出栈（pop）。Python没有入栈方法，但可以用append方法替代。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, 3]
+</pre></div>
+</td></tr></table>
+
+<p><strong>7. remove</strong>      <br />
+remove方法会移除列表中某个值的第一个匹配项 ：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 3]
+</pre></div>
+</td></tr></table>
+
+<p>remove是一个没有返回值的原位置改变方法，这与pop方法不同。</p>
+<p><strong>8. reverse</strong>      <br />
+reverse方法会将列表中的元素反向存放 ：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[3, 1]
+</pre></div>
+</td></tr></table>
+
+<p><strong>9. sort</strong>      <br />
+sort方法会将列表中的元素进行排序 ：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">y</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, 3, 4]
+</pre></div>
+</td></tr></table>
+
+<p>另一种获取已排序的列表副本的方法是，使用<strong>sorted</strong>函数：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">y</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[4, 2, 3, 1]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">y</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[1, 2, 3, 4]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">y</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">y</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[4, 3, 2, 1]
+</pre></div>
+</td></tr></table>
+
+<h3 id="3">3 元组：不可变序列</h3>
+<p>可以用逗号分隔一些值，自动创建元组：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>(1, 2, 3)
+</pre></div>
+</td></tr></table>
+
+<p>元组也能通过圆括号括起来：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>(1, 2, 3)
+</pre></div>
+</td></tr></table>
+
+<h4 id="31-tuple">3.1 tuple函数</h4>
+<p>以一个序列为参数并把它转换为元组：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>(1, 2, 3)
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">tuple</span><span class="p">(</span><span class="s">&#39;abc&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)
+</pre></div>
+</td></tr></table>
+
+<h4 id="32">3.2 基本元组操作</h4>
+<p>除了创建元组和访问元组元素之外，也没有太多其他操作：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>(2, 3)
+</pre></div>
+</td></tr></table>
+
+<h3 id="4">4 字符串</h3>
+<h4 id="41">4.1 字符串格式化</h4>
+<p>字符串格式化使用字符串格式化操作符，即百分号%来实现。在%的左侧放置一个字符串（格式化字符串），而右侧则放置希望格式化的值。可以使用一个值，比如一个字符串或数字，也可以使用多个值的元组或字典。一般情况下使用元组：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">format</span><span class="o">=</span><span class="s">&#39;hello, </span><span class="si">%s</span><span class="s">. </span><span class="si">%s</span><span class="s"> enough for ya?&#39;</span>
+<span class="n">values</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;world&#39;</span><span class="p">,</span><span class="s">&#39;Hot&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">format</span> <span class="o">%</span> <span class="n">values</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>hello, world. Hot enough for ya?
+</pre></div>
+</td></tr></table>
+
+<p>格式化字符串%s部分称为转换说明符，它们标记了需要插入转换值的位置。s表示值会被格式化为字符串-如果不是字符串，则会用str将其转换为字符串。   <br />
+如果要格式化实数（浮点数），可以使用f说明符类型，同时提供所需要的精度：一个句点再加上希望保留的小数位数。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">format</span><span class="o">=</span><span class="s">&#39;Pi with four decimals:</span><span class="si">%.4f</span><span class="s">&#39;</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="k">print</span> <span class="n">format</span> <span class="o">%</span> <span class="n">pi</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>Pi with four decimals:3.1416
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;Pi :</span><span class="si">%10f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">pi</span>   <span class="c">#字段宽 10</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;Pi :  3.141593&#39;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;Pi :</span><span class="si">%010.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">pi</span> <span class="c">#用0进行空位填充</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;Pi :0000003.14&#39;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;</span><span class="si">%-10.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">pi</span>   <span class="c">#减号用来左对齐数值</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;3.14      &#39;
+</pre></div>
+</td></tr></table>
+
+<p>加号表示不管是正数还是负数都标示出符号（同样是在对齐时很有用）：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">print</span> <span class="p">(</span><span class="s">&#39;</span><span class="si">%+5d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">+</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%+5d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre>  +10
+  -10
+</pre></div>
+</td></tr></table>
+
+<h4 id="42">4.2 字符串方法</h4>
+<p>字符串的方法很多，这是因为字符串从string模块中“继承”了很多方法。  <br />
+<strong>1. find</strong>    <br />
+find方法可以在一个较长的字符串中查找子字符串。它返回子串所在位置的最左端索引。如果没有找到则返回-1。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;hello, world!&#39;</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;wor&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>7
+</pre></div>
+</td></tr></table>
+
+<p><strong>2. join</strong>    <br />
+join方法是非常重要的字符串方法，它是split方法的逆方法。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">seq</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="s">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c">#连接数字列表</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-79-057454ab231d&gt; in &lt;module&gt;()
+      1 seq=[1,2,3]
+----&gt; 2 &#39;+&#39;.join(seq)  #连接数字列表
+
+
+TypeError: sequence item 0: expected string, int found
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">seq</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;1&#39;</span><span class="p">,</span><span class="s">&#39;2&#39;</span><span class="p">,</span><span class="s">&#39;3&#39;</span><span class="p">]</span>
+<span class="s">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c">#连接字符串列表</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;1+2+3&#39;
+</pre></div>
+</td></tr></table>
+
+<p>可以看到，需要添加的队列元素都必须是字符串。</p>
+<p><strong>3. lower</strong>    <br />
+lower方法返回字符串的小写字母版。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;Hello, World!&#39;</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;hello, world!&#39;
+</pre></div>
+</td></tr></table>
+
+<p><strong>4. replace</strong>    <br />
+replace方法返回某字符串的所有匹配项均被替换之后得到字符串。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;This is a shoe&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;s&#39;</span><span class="p">,</span><span class="s">&#39;aaa&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;Thiaaa iaaa a aaahoe&#39;
+</pre></div>
+</td></tr></table>
+
+<p><strong>5. split</strong>    <br />
+split方法是join的逆方法，用来将字符串分割成序列。如果不提供任何分隔符，程序会把所有空格作为分隔符（空格、制表、换行等）。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;1+2+3&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;+&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]
+</pre></div>
+</td></tr></table>
+
+<p><strong>6. strip</strong>    <br />
+strip方法返回去除两侧（不包括内部）空格的字符串：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&#39;      hello world       &#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;hello world&#39;
+</pre></div>
+</td></tr></table>
+
+<h3 id="5">5 字典</h3>
+<p>字典是一种通过名字(键)引用值的数据结构。这种结构类型称为映射（mapping）。</p>
+<h4 id="51">5.1 创建和使用字典</h4>
+<p>字典可以通过下面的方式创建：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">phonebook</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Alice&#39;</span><span class="p">:</span><span class="s">&#39;2341&#39;</span><span class="p">,</span><span class="s">&#39;Beth&#39;</span><span class="p">:</span><span class="mi">9102</span><span class="p">}</span>
+<span class="n">phonebook</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>{&#39;Alice&#39;: &#39;2341&#39;, &#39;Beth&#39;: 9102}
+</pre></div>
+</td></tr></table>
+
+<h4 id="52-dict">5.2 dict函数</h4>
+<p>可以用dict函数，通过其他映射（比如其他字典）或者（键，值）这样的序列对建立字典。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">items</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="s">&#39;Gumby&#39;</span><span class="p">),(</span><span class="s">&#39;age&#39;</span><span class="p">,</span><span class="s">&#39;42&#39;</span><span class="p">)]</span>
+<span class="n">d</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="n">d</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>{&#39;age&#39;: &#39;42&#39;, &#39;name&#39;: &#39;Gumby&#39;}
+</pre></div>
+</td></tr></table>
+
+<p>dict函数也可以通过关键字参数来创建字典，如下：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Gumby&#39;</span><span class="p">,</span><span class="n">age</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">d</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>{&#39;age&#39;: 42, &#39;name&#39;: &#39;Gumby&#39;}
+</pre></div>
+</td></tr></table>
+
+<h4 id="53">5.3 基本字典操作</h4>
+<p>字典的基本行为在很多方面与序列类似：  <br />
+len(d)返回d中项（键-值对）的数量；    <br />
+d[k]返回关联到键k上的值；   <br />
+d[k]=v将值v关联到键k上； <br />
+del d[k]删除键为k的项； <br />
+k in d检查d中是否含有键为k的项。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">42</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;hello&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre>---------------------------------------------------------------------------
+
+IndexError                                Traceback (most recent call last)
+
+&lt;ipython-input-4-f0295807ecda&gt; in &lt;module&gt;()
+      1 x=[]
+----&gt; 2 x[42]=&#39;hello&#39;
+
+
+IndexError: list assignment index out of range
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">42</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;hello&#39;</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>{42: &#39;hello&#39;}
+</pre></div>
+</td></tr></table>
+
+<p>上面将字符串&rsquo;hello&rsquo;关联到一个空列表的42号位置上—这显然是不可能的，因为这个位置根本不存在。为了将其变为可能，必须用[None]*43或者其他方式初始化x，而不能仅使用[]。但是，可将&rsquo;hello&rsquo;关联到空字典的键42上。</p>
+<h4 id="54">5.4 字典的格式化字符串</h4>
+<p>字典的格式化就是在每个转换说明符中的%字符后面，可以加上（用圆括号括起来的）键，后面再跟上其他说明元素。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">phonebook</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;Alice&#39;</span><span class="p">:</span><span class="s">&#39;2341&#39;</span><span class="p">,</span><span class="s">&#39;Beth&#39;</span><span class="p">:</span><span class="mi">9102</span><span class="p">}</span>
+<span class="n">phonebook</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>{&#39;Alice&#39;: &#39;2341&#39;, &#39;Beth&#39;: 9102}
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="s">&quot;Beth&#39;s phone number is </span><span class="si">%(Beth)s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="n">phonebook</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&quot;Beth&#39;s phone number is 9102.&quot;
+</pre></div>
+</td></tr></table>
+
+<h4 id="55">5.5 字典方法</h4>
+<p><strong>1. clear</strong>    <br />
+clear方法清除字典中所有的项。这是个原地操作（类似于list.sort）,所以无返回值（或返回None）。</p>
+<p><strong>2. get</strong>    <br />
+get方法是个更宽松的访问字典项的方法。一般来说，如果试图访问字典中不存在的项时会出错：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">print</span> <span class="n">d</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre>---------------------------------------------------------------------------
+
+KeyError                                  Traceback (most recent call last)
+
+&lt;ipython-input-8-4f402a46f272&gt; in &lt;module&gt;()
+      1 d={}
+----&gt; 2 print d[&#39;name&#39;]
+
+
+KeyError: &#39;name&#39;
+</pre></div>
+</td></tr></table>
+
+<p>而用get就不会：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">print</span> <span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>None
+</pre></div>
+</td></tr></table>
+
+<p>可以看到，当使用get访问一个不存在的键时，没有任何异常，而得到了None值，还可以自定义”默认“值，替换None:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="s">&#39;N/A&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;N/A&#39;
+</pre></div>
+</td></tr></table>
+
+<p><strong>3. has_key</strong>    <br />
+has_key方法可以检测字典中是否含有给出的键。表达式d.has_key(k)相当于表达式k in d。</p>
+<p><strong>4. items和iteritems</strong>    <br />
+items方法将所有字典项以列表方式返回，这些列表项中的每一项都来自于（键，值）。但是项在返回时并没有特殊的顺序。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;title&#39;</span><span class="p">:</span><span class="s">&#39;Python web site&#39;</span><span class="p">,</span><span class="s">&#39;url&#39;</span><span class="p">:</span><span class="s">&#39;http://www.python.org&#39;</span><span class="p">,</span><span class="s">&#39;spam&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+<span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[(&#39;url&#39;, &#39;http://www.python.org&#39;), (&#39;spam&#39;, 0), (&#39;title&#39;, &#39;Python web site&#39;)]
+</pre></div>
+</td></tr></table>
+
+<p>iteritems方法的作用大致相同，但是会返回一个迭代器对象而不是列表：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">it</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()</span>
+<span class="n">it</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&lt;dictionary-itemiterator at 0x4324408&gt;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">list</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>  <span class="c">#Convert the iterator to a list</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[(&#39;url&#39;, &#39;http://www.python.org&#39;), (&#39;spam&#39;, 0), (&#39;title&#39;, &#39;Python web site&#39;)]
+</pre></div>
+</td></tr></table>
+
+<p>在很多情况下使用iteritems更高效（尤其是想要迭代结果的情况下）。</p>
+<p><strong>5. keys和iterkeys</strong>    <br />
+keys方法将字典中的键以列表形式返回，而iterkeys则返回针对键的迭代器。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;url&#39;, &#39;spam&#39;, &#39;title&#39;]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">m</span><span class="o">=</span><span class="n">d</span><span class="o">.</span><span class="n">iterkeys</span><span class="p">()</span>
+<span class="n">m</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&lt;dictionary-keyiterator at 0x43244a8&gt;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">list</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[&#39;url&#39;, &#39;spam&#39;, &#39;title&#39;]
+</pre></div>
+</td></tr></table>
+
+<p><strong>6. pop</strong>    <br />
+pop方法用来获得对应于给定键的值，然后将这个键-值对从字典中移除。</p>
+<p><strong>7. values和itervalues</strong>    <br />
+values方法以列表的形式返回字典中的值（itervalues返回值的迭代器）。</p>
+<p><strong>8. setdefault</strong>    <br />
+setdefault方法在某种程度上类似于get方法，就是能够获得与给定键相关联的值，除此之外，setdefault还能在字典中不含有给定键的情况下设定相应的键值。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">d</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="s">&#39;N/A&#39;</span><span class="p">)</span>
+<span class="n">d</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>{&#39;name&#39;: &#39;N/A&#39;}
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span><span class="o">=</span><span class="s">&#39;Gumby&#39;</span>
+<span class="n">d</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="s">&#39;N/A&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&#39;Gumby&#39;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>{&#39;name&#39;: &#39;Gumby&#39;}
+</pre></div>
+</td></tr></table>
+
+<h3 id="6">6 小结</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>
+</pre></div>
+</td></tr></table>
+<hr/>
+标签: <span class="label label-default">python</span> <span class="label label-default">列表</span> <span class="label label-default">元组</span> <span class="label label-default">字符串</span> <span class="label label-default">字典</span> <span class="label label-default">2</span><br/>
+创建时间: 2016.12.07<br/>
+上次修改: 2016.12.07
+<div class="ds-thread" data-thread-key="0fea7c47d93da5689f31820ee525b367" data-title="数据结构" data-url="http://peishunli.github.io/blog/python_beginning/2list_tuple_string_dict.html"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"peishunli"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+</div>
+
+<footer class="page-footer">
+  <div id="container">
+    <div class="footer-left">
+        <h4 class="white-text">关于peishunli.site</h4>
+        <ul class="mdul">
+          <li class="mdli white-text">本网站提供的内容仅用于学习和分享，不能保证内容一定正确...</li>
+        </ul>
+    </div>
+    <div class="footer-right">
+        <h4 class="white-text">其他网站链接</h4>
+        <ul class="mdul">
+          <li class="mdli"><a class="white-text" href="http://github.com/">Github</a></li>
+		  <li class="mdli"><a class="white-text" href="http://www.zhihu.com/">知乎</a></li>
+        </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div id="container">
+        Copyright © 2015-2016 Powered by peishunli. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
+</html>

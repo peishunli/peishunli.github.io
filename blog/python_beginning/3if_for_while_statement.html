@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a4d4cfbf5559c427ea39c9814a033024";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<head>
+  <title>条件和循环语句 - peishunli.site</title>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="..\..\favicon.ico" type="image/ico">
+  <link rel="stylesheet" type="text/css" href="..\..\css\site.min.css">
+  <script type="text/javascript" async="async" src="..\..\mathjax\MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <link href="..\..\tipuesearch\tipuesearch.css" rel="stylesheet">
+  <script src="..\..\tipuesearch\tipuesearch_set.js"></script>
+  <script src="..\..\tipuesearch\tipuesearch.min.js"></script>
+</head>
+<body>
+<div id="topbar">
+  <div style="display: block; float: right">
+  <form action="..\..\search.html">
+  <input type="text" placeholder="Search Here" name="q" id="tipue_search_input" autocomplete="off" required>
+  </form>
+  </div>
+</div>
+<ul class="breadcrumb"><li><a href="..\..\index.html">HOME</a></li><li><a href="..\posts.html">POSTS</a></li><li><a href="..\posts.html#PYTHON_BEGINNING">PYTHON_BEGINNING</a></li><li class="active">条件和循环语句</li></ul>
+
+<div id="view">
+<div class="toc">
+<ul>
+<li><a href="#1">1 语句块：缩排的乐趣</a></li>
+<li><a href="#2">2 条件和条件语句</a><ul>
+<li><a href="#21">2.1 布尔变量的作用</a></li>
+<li><a href="#22-ifelseelif">2.2 条件执行和if语句、else子句、elif子句</a></li>
+<li><a href="#23">2.3 更复杂的条件</a></li>
+</ul>
+</li>
+<li><a href="#3">3 循环</a><ul>
+<li><a href="#31-while">3.1 while循环</a></li>
+<li><a href="#32-for">3.2 for循环</a></li>
+<li><a href="#33">3.3 循环遍历字典元素</a></li>
+<li><a href="#34">3.4 翻转和排序迭代</a></li>
+<li><a href="#35">3.5 并行迭代</a></li>
+<li><a href="#36">3.6 跳出循环</a></li>
+</ul>
+</li>
+<li><a href="#4">4 列表推导式—轻量级循环</a></li>
+<li><a href="#5-passdelexec">5 pass、del和exec语句</a></li>
+<li><a href="#6">6 小结</a></li>
+</ul>
+</div>
+<div id="container">
+
+<p>前面已经介绍过了几个基本语句（print语句、import语句、赋值语句）。接下来你会看到<strong>列表推导式（list comprehension）</strong>如何扮演循环和条件语句的角色。最后介绍pass、del和exec语句的用法。</p>
+<h3 id="1">1 语句块：缩排的乐趣</h3>
+<p>语句块是在条件为真（条件语句）时执行或者执行多次（循环语句）的一组语句。在代码前放置空格来缩进语句即可创建语句块。    <br />
+<strong>注意</strong>  <strong><em>使用tab字符也可以缩进语句块。而一个tab字符位置为8个空格，但是标准且推荐的方式是只用空格，尤其是在每个缩进需要4个空格的时候</em></strong>。</p>
+<h3 id="2">2 条件和条件语句</h3>
+<p>这部分会介绍让程序选择是否执行语句块的方法。</p>
+<h4 id="21">2.1 布尔变量的作用</h4>
+<p>下面的值在作为布尔表达式的时候，会被解释器看做假（false）：    <br />
+False None 0 &ldquo;&rdquo; () [] {}  <br />
+其他的一切都被解释为真。  <br />
+布尔值True和False属于布尔类型，bool函数（和list、str、tuple一样）可以用来转换其他值。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">bool</span><span class="p">(</span><span class="s">&#39;ok&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>True
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">bool</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>True
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">bool</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>False
+</pre></div>
+</td></tr></table>
+
+<h4 id="22-ifelseelif">2.2 条件执行和if语句、else子句、elif子句</h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">num</span><span class="o">=</span><span class="nb">input</span><span class="p">(</span><span class="s">&#39;Enter a number:&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">num</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;positive&#39;</span>
+<span class="k">elif</span> <span class="n">num</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;negative&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&#39;zero&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre>Enter a number:8
+positive
+</pre></div>
+</td></tr></table>
+
+<h4 id="23">2.3 更复杂的条件</h4>
+<p><strong>1. 比较运算符</strong>   <br />
+x==y  <br />
+x &lt; y  <br />
+x&gt;=y  <br />
+x!=y <br />
+x is y  <br />
+x is not y（x和y是不同的对象）  <br />
+x in y   <br />
+x not in y(x不是y容器（例如，序列）的成员)   <br />
+注意： 使用==运算符来判定两个对象是否相等，使用is判定两者是否等同（同一个对象）。</p>
+<p><strong>2. 布尔运算符</strong>   <br />
+and, or, not就是所谓的布尔运算符。</p>
+<h3 id="3">3 循环</h3>
+<h4 id="31-while">3.1 while循环</h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">while</span> <span class="n">x</span><span class="o">&lt;=</span><span class="mi">3</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">x</span>
+    <span class="n">x</span><span class="o">+=</span><span class="mi">1</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre>1
+2
+3
+</pre></div>
+</td></tr></table>
+
+<h4 id="32-for">3.2 for循环</h4>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">nums</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">n</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre>1
+2
+3
+</pre></div>
+</td></tr></table>
+
+<p>因为迭代（循环的另外一种说法）某范围的数字是很常见的，所以有个内建的范围函数供使用：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></div>
+</td></tr></table>
+
+<p>range函数的工作方式类似于分片。它包含下限，但不包含上限。如果希望下限为0，可以只提供上限：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>  <span class="c">#-2表示步长</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[10, 8, 6, 4, 2]
+</pre></div>
+</td></tr></table>
+
+<h4 id="33">3.3 循环遍历字典元素</h4>
+<p>一个简单的for语句就能循环字典的所有键：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">d</span> <span class="o">=</span><span class="p">{</span><span class="s">&#39;x&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;y&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s">&#39;z&#39;</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+    <span class="k">print</span> <span class="n">key</span><span class="p">,</span><span class="s">&#39;corresponds to&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre>y corresponds to 2
+x corresponds to 1
+z corresponds to 3
+</pre></div>
+</td></tr></table>
+
+<p>如果只需要值，可以使用d.values替代d.keys。d.items方法会将键-值对作为元组返回，for循环的一大好处就是可以循环中使用序列解包：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">print</span> <span class="n">key</span><span class="p">,</span><span class="s">&#39;corresponds to&#39;</span><span class="p">,</span> <span class="n">value</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre>y corresponds to 2
+x corresponds to 1
+z corresponds to 3
+</pre></div>
+</td></tr></table>
+
+<h4 id="34">3.4 翻转和排序迭代</h4>
+<p>reversed和sorted这两个函数同列表的reverse和sort方法类似，但能作用于任何序列或可迭代对象上，不是原地修改对象，而是返回翻转或排序后的版本：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">sorted</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[3, 4, 6, 8]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">reversed</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>&lt;listreverseiterator at 0x411ae48&gt;
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="p">]))</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[8, 6, 3, 4]
+</pre></div>
+</td></tr></table>
+
+<p>注意：虽然sorted函数返回列表，reversed函数却返回一个可迭代对象。它们大可在for循环以及join方法中使用，而不会有任何问题。不过却不能直接对它使用索引、分片及调用列表的方法。</p>
+<h4 id="35">3.5 并行迭代</h4>
+<p>程序可以同时迭代两个序列。比如有下面两个列表：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;anne&#39;</span><span class="p">,</span><span class="s">&#39;beth&#39;</span><span class="p">,</span><span class="s">&#39;george&#39;</span><span class="p">,</span><span class="s">&#39;damon&#39;</span><span class="p">]</span>
+<span class="n">ages</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">102</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+    <span class="k">print</span> <span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s">&#39;is&#39;</span><span class="p">,</span><span class="n">ages</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s">&#39;years old&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre>anne is 12 years old
+beth is 45 years old
+george is 32 years old
+damon is 102 years old
+</pre></div>
+</td></tr></table>
+
+<p>而内建的zip函数可以用来进行并行迭代，可以把两个序列“压缩”在一起，然后返回一个元组的列表：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span><span class="n">ages</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[(&#39;anne&#39;, 12), (&#39;beth&#39;, 45), (&#39;george&#39;, 32), (&#39;damon&#39;, 102)]
+</pre></div>
+</td></tr></table>
+
+<p>现在可以在循环中解包元组：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span><span class="n">ages</span><span class="p">):</span>
+    <span class="k">print</span> <span class="n">name</span><span class="p">,</span><span class="s">&#39;is&#39;</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="s">&#39;years old&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre>anne is 12 years old
+beth is 45 years old
+george is 32 years old
+damon is 102 years old
+</pre></div>
+</td></tr></table>
+
+<h4 id="36">3.6 跳出循环</h4>
+<p><strong>1. break</strong>      <br />
+结束（跳出）循环可以使用break语句。   <br />
+<strong>2. continue</strong>      <br />
+continue会让当前的迭代结束，“跳”到下一轮循环的开始。</p>
+<h3 id="4">4 列表推导式—轻量级循环</h3>
+<p>列表推导式（类似于数学术语中的集合推导式）是利用其他列表创建新列表的一种方法。它的工作方式类似于for循环：</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+</pre></div>
+</td></tr></table>
+
+<p>如果只想打印出那些能被3整除的平方数呢？可以使用模除运算符—y%3。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[0, 9, 36, 81]
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>[(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]
+</pre></div>
+</td></tr></table>
+
+<h3 id="5-passdelexec">5 pass、del和exec语句</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">pass</span>    <span class="c">#该语句什么事情也不做</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">x</span><span class="o">=</span><span class="mi">1</span>
+<span class="k">del</span> <span class="n">x</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre>---------------------------------------------------------------------------
+
+NameError                                 Traceback (most recent call last)
+
+&lt;ipython-input-25-0ba4a8505457&gt; in &lt;module&gt;()
+      1 x=1
+      2 del x
+----&gt; 3 x
+
+
+NameError: name &#39;x&#39; is not defined
+</pre></div>
+</td></tr></table>
+
+<p>del语句不仅会移除一个对象的引用，也会移除那个名字本身。    </p>
+<p>有些时候可能需要动态地创造Python代码，然后将其作为语句执行或作为表达式计算。而exec语句能执行存储在字符串中的Python代码。eval语句会计算Python表达式，并且返回结果值。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">exec</span> <span class="s">&#39;print &quot;Hello, world&quot;&#39;</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>Hello, world
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="k">exec</span> <span class="s">&#39;sqrt=1&#39;</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">27</span><span class="o">-</span><span class="n">fe92a6d219bc</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">()</span>
+      <span class="mi">1</span> <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+      <span class="mi">2</span> <span class="k">exec</span> <span class="s">&#39;sqrt=1&#39;</span>
+<span class="o">----&gt;</span> <span class="mi">3</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s">&#39;int&#39;</span> <span class="nb">object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">callable</span>
+</pre></div>
+</td></tr></table>
+
+<p>exec语句最有用的地方在于可以动态地创造代码字符串。如果字符串是从其他地方获得的—很可能是用户—那么就不能确定其中到底包含什么代码。所以为了安全起见，可以增加一个字典，起到命名空间的作用。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="n">scope</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">exec</span> <span class="s">&#39;sqrt=1&#39;</span> <span class="ow">in</span> <span class="n">scope</span>
+<span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>2.0
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">scope</span><span class="p">[</span><span class="s">&#39;sqrt&#39;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>1
+</pre></div>
+</td></tr></table>
+
+<p>可以通过增加in scope来实现，其中scope就是起到放置代码字符串命名空间作用的字典。可以看到，潜在的破坏性代码并不会覆盖sqrt函数，原来的函数能正常工作，而通过exec赋值的变量sqrt只能在它的作用域内有效。</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">eval</span><span class="p">(</span><span class="s">&#39;6+18*2&#39;</span><span class="p">)</span>  <span class="c">#执行表达式</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>42
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="k">exec</span><span class="p">(</span><span class="s">&#39;x=6+18*2&#39;</span><span class="p">)</span>  <span class="c">#执行语句</span>
+<span class="n">x</span>
+</pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>42
+</pre></div>
+</td></tr></table>
+
+<h3 id="6">6 小结</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre>
+</pre></div>
+</td></tr></table>
+<hr/>
+标签: <span class="label label-default">python</span> <span class="label label-default">语句</span> <span class="label label-default">列表推导式</span> <span class="label label-default">3</span><br/>
+创建时间: 2016.12.07<br/>
+上次修改: 2016.12.07
+<div class="ds-thread" data-thread-key="f7ec3079bb2384b47e6abb3c45f87210" data-title="条件和循环语句" data-url="http://peishunli.github.io/blog/python_beginning/3if_for_while_statement.html"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"peishunli"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (
+        document.location.protocol == 'https:' ? 'https:' : 'http:'
+    ) + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+</div>
+
+<footer class="page-footer">
+  <div id="container">
+    <div class="footer-left">
+        <h4 class="white-text">关于peishunli.site</h4>
+        <ul class="mdul">
+          <li class="mdli white-text">本网站提供的内容仅用于学习和分享，不能保证内容一定正确...</li>
+        </ul>
+    </div>
+    <div class="footer-right">
+        <h4 class="white-text">其他网站链接</h4>
+        <ul class="mdul">
+          <li class="mdli"><a class="white-text" href="http://github.com/">Github</a></li>
+		  <li class="mdli"><a class="white-text" href="http://www.zhihu.com/">知乎</a></li>
+        </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div id="container">
+        Copyright © 2015-2016 Powered by peishunli. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
+</html>
