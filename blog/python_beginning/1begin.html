@@ -64,12 +64,12 @@ var _hmt = _hmt || [];
 <h3 id="1-python">1 安装Python</h3>
 <h4 id="11-windows">1.1 windows</h4>
 <p>(1) 从 http://www.python.org 下载Python安装包<br />
-(2) 双击运行Python的Windows Installer，这样会开启Python的安装向导，只需要接受默认设置。</p>
+(2) 双击运行Python的Windows Installer，这样会开启Python的安装向导，只需要接受默认设置。  </p>
 <h4 id="12-linux">1.2 Linux</h4>
 <p>在绝大多数Linux系统中，Python的解释器就已经存在。如果读者需要自己安装Python，可以使用Linux中的包管理器进行安装。如果使用的操作系统为Debian Linux， 那么可以用下面的命令来安装Python: <br />
-\$ apt-get install python <br />
+<code>$ apt-get install python</code><br />
 如果是RedHat Linux，则使用: <br />
-\$ yum install python</p>
+<code>$ yum install python</code></p>
 <h3 id="2-python">2 Python交互式解释器</h3>
 <p>当启动Python的时候，会出现和下面类似的提示： <br />
 Python 2.7.10 (default, May 23 2015, 09:44:00) [MSC v.1500 64 bit (AMD64)] on win32<br />
@@ -240,7 +240,7 @@ Type &ldquo;copyright&rdquo;, &ldquo;credits&rdquo; or &ldquo;license()&rdquo; f
 </pre></div>
 </td></tr></table>
 
-<p>输入的值20和31由用户提供，而程序</p>
+<p>输入的值20和31由用户提供。</p>
 <h3 id="7">7 函数</h3>
 <p>函数就像可以用来实现特定功能的小程序一样。我们通常把标准函数称为内建函数。比如使用abs函数可以得到数的绝对值，round函数则会把浮点数四舍五入为最接近的整数值：</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
@@ -297,8 +297,12 @@ Type &ldquo;copyright&rdquo;, &ldquo;credits&rdquo; or &ldquo;license()&rdquo; f
 首先，需要一个文本编辑器。然后将程序保存在以.py结尾的文本文件中。如果使用Python解释器可通过Edit-&gt;Run或者按下Ctrl+F5键来运行程序。如果使用DOS窗口或者Linux中的Shell提示符可通过运行以下命令执行脚本：python *.py</p>
 <h3 id="10">10 注释</h3>
 <p>井号（#）在Python中有特殊作用。在代码中输入它的时候，它右边的一切都会被忽略。比如：</p>
-<p># 打印圆的周长：  <br />
-print 2*pi*radius</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c"># 打印圆的周长：    </span>
+<span class="k">print</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">radius</span>
+</pre></div>
+</td></tr></table>
+
 <p>这里的第一行称为注释。为了让别人能够更容易理解程序，使用注释是非常有效的。</p>
 <h3 id="11">11 字符串</h3>
 <p>在程序中可以使用双引号将字符串括起来：</p>
@@ -568,11 +572,11 @@ SyntaxError: EOL while scanning string literal
 </td></tr></table>
 
 <h3 id="12">12 小结</h3>
-<p>本章讲了很多内容。在继续下一章之前，先来回顾一下在本章学到了什么：</p>
+<p>本章讲了很多内容。在继续下一章之前，可以回顾一下在本章学到的知识点。</p>
 <hr/>
 标签: <span class="label label-default">python</span> <span class="label label-default">basics</span> <span class="label label-default">1</span><br/>
-创建时间: 2016.12.07<br/>
-上次修改: 2016.12.07
+创建时间: 2016.10.09<br/>
+上次修改: 2016.10.09
 <div class="ds-thread" data-thread-key="8453e91e9011ab99dfbb3b16f56ac222" data-title="基础知识" data-url="http://peishunli.github.io/blog/python_beginning/1begin.html"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"peishunli"};

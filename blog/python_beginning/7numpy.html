@@ -136,8 +136,10 @@ NumPy的诞生弥补了这些不足，NumPy提供了两种基本的对象：ndar
 </pre></div>
 </td></tr></table>
 
-<p>上面的例子都是先创建一个Python序列，然后通过array函数将其转换为数组，这样做显然效率不高。因此NumPy提供了很多专门用来创建数组的函数。下面的每个函数都有一些关键字参数，具体用法请查看函数说明。  <br />
-+ arange函数类似于python的range函数，通过指定开始值、终值和步长来创建一维数组，注意数组不包括终值:</p>
+<p>上面的例子都是先创建一个Python序列，然后通过array函数将其转换为数组，这样做显然效率不高。因此NumPy提供了很多专门用来创建数组的函数。下面的每个函数都有一些关键字参数，具体用法请查看函数说明。    </p>
+<ul>
+<li>arange函数类似于python的range函数，通过指定开始值、终值和步长来创建一维数组，注意数组不包括终值:</li>
+</ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </td></tr></table>
@@ -162,7 +164,7 @@ NumPy的诞生弥补了这些不足，NumPy提供了两种基本的对象：ndar
 </td></tr></table>
 
 <ul>
-<li>logspace函数和linspace类似，不过它创建等比数列，下面的例子产生1(10^0)到100(10^2)、有20个元素的等比数列:</li>
+<li>logspace函数和linspace类似，不过它创建等比数列，下面的例子产生1(<mathjax>$10^0$</mathjax>)到100(<mathjax>$10^2$</mathjax>)、有20个元素的等比数列:</li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </pre></div>
@@ -243,7 +245,7 @@ NumPy的诞生弥补了这些不足，NumPy提供了两种基本的对象：ndar
 </pre></div>
 </td></tr></table>
 
-<p>用于存取数组的下标和仍然是一个有两个元素的元组，元组中的每个元素都是整数序列，分别对应数组的第0轴和第1轴。从两个序列的对应位置取出两个整数组成下标： a[0,1], a[1,2], &hellip;, a[4,5]。</p>
+<p>用于存取数组的下标仍然是一个有两个元素的元组，元组中的每个元素都是整数序列，分别对应数组的第0轴和第1轴。从两个序列的对应位置取出两个整数组成下标： a[0,1], a[1,2], &hellip;, a[4,5]。</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">a</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
 </pre></div>
 </td></tr></table>
@@ -372,8 +374,8 @@ numpy.sin: 0.0187235443572
 </td></tr></table>
 <hr/>
 标签: <span class="label label-default">python</span> <span class="label label-default">ndarray</span> <span class="label label-default">ufunc</span> <span class="label label-default">7</span><br/>
-创建时间: 2016.12.07<br/>
-上次修改: 2016.12.07
+创建时间: 2016.11.20<br/>
+上次修改: 2016.11.20
 <div class="ds-thread" data-thread-key="c2263b457e97ea027e2c02c3c4a0d68f" data-title="NumPy-快速处理数据" data-url="http://peishunli.github.io/blog/python_beginning/7numpy.html"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"peishunli"};

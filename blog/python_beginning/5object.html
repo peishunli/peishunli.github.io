@@ -117,7 +117,7 @@ Python中，习惯上使用单数名词，并且首字母大写，比如Bird和L
  8
  9
 10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">__metaclass__</span><span class="o">=</span><span class="nb">type</span>   <span class="c">#确定使用新式类</span>
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span class="n">__metaclass__</span><span class="o">=</span><span class="nb">type</span>   <span class="c">#或class Person(object)  确定使用新式类</span>
 <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">setName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">name</span>
@@ -568,7 +568,7 @@ super函数只能在新式类中使用。当前的类和对象可以作为super�
 <p>b. __getitem__(self,key):这个方法返回与所给键对应的值。对于序列来说，键应该是一个0~n-1的整数（或者像后面所说的负数）；对于映射来说，可以使用任何种类的键。</p>
 <p>c. __setitem__(self,key,value):这个方法按一定的方式存储和key关联的value，该值随后可使用 __getitem__来获取。当然，只能为可以修改的对象定义这个方法。</p>
 <p>d. __delitem__(self,key):这个方法在对一部分对象使用del语句时被调用，同时删除和键关联的值。这个方法也是为可修改的对象定义的。     </p>
-<p>对这些方法的附件要求：   <br />
+<p>对这些方法的要求：   <br />
 a. 对于一个序列来说，如果键是负整数，那么要从末尾开始计数。换句话说就是x[-n]和x[len(x)-n]是一样的；  <br />
 b. 如果键是不合适的类型（例如，对序列使用字符串作为键），会引发一个TypeError异常;    <br />
 c. 如果序列的索引是正确的类型，但超出了范围，会引发一个IndexError异常。   <br />
@@ -1540,8 +1540,8 @@ TypeError: &#39;int&#39; object is not iterable
 <p>到目前为止，Python语言的大部分知识都介绍了。</p>
 <hr/>
 标签: <span class="label label-default">python</span> <span class="label label-default">多态</span> <span class="label label-default">封装</span> <span class="label label-default">方法</span> <span class="label label-default">5</span><br/>
-创建时间: 2016.12.07<br/>
-上次修改: 2016.12.07
+创建时间: 2016.11.06<br/>
+上次修改: 2016.11.06
 <div class="ds-thread" data-thread-key="b14494137c805dc66bdc9ed88d7fd2de" data-title="对象" data-url="http://peishunli.github.io/blog/python_beginning/5object.html"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"peishunli"};
